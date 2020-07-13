@@ -146,11 +146,6 @@ $(function () {
         $(this).animate({backgroundColor: "#A9D400", left: '652px', width: '234px'}, {duration: 300});
     });
 
-//    MVG_CONTACT.fancybox({
-//        width   : 540,
-//        height  : 380,
-//        autoSize: false
-//    });
     $("#sfSmall").fancybox({
         'openSpeed' : 800,
         'closeSpeed': 500,
