@@ -120,53 +120,6 @@ function makeButtonBar (titlesNL, titlesEN) {
     document.write('</div>');
     document.write('</div>');
 }
-function validateEmail (email) {
-    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return reg.test(email);
-}
-
-function sendEmail () {
-    var contactBox = $("#contactBox");
-    var sendButton = $("#contactBoxSendButton");
-    var emailDiv = $("#emailSender");
-    var msgDiv = $("#emailMessage");
-
-    if (!validateEmail(emailDiv.val())) {
-        emailDiv.addClass("error");
-        msgDiv.removeClass("error");
-    } else if (msgDiv.val().length<4) {
-        emailDiv.removeClass("error");
-        msgDiv.addClass("error");
-    } else {
-        emailDiv.removeClass("error");
-        msgDiv.removeClass("error");
-        sendButton.prop("disabled", "true");
-        $(".busySending").fadeIn("fast", function () {
-            $.ajax({
-                type   : 'POST',
-                url    : 'sendmessage.php',
-                data   : contactBox.serialize(),
-                success: function (data) {
-                    if (data=="true") {
-                        $(".busySending").hide();
-                        $(".doneSending").fadeIn("fast", function () {
-                            setTimeout(function () {
-                                $.fancybox.close();
-                                setTimeout(function () {
-                                    $(".doneSending").hide();
-                                    msgDiv.val("");
-                                    contactBox.show();
-                                    sendButton.removeAttr("disabled");
-                                }, 500);
-                            }, 1000);
-                        });
-                    }
-                }
-            });
-        });
-    }
-}
-
 $(function () {
     // this is an attempt to hide the email address from harvesters (zero width space and at sign as calc):
     var at = '&#8203;&#'+(63+1)+';&#8203;';
@@ -205,12 +158,6 @@ $(function () {
             return MVG_LANG=="NL" ? "Principe schema van Next Level Software Factories" : "Schematic of Next Level Software Factory principle"
         }
     });
-    $("#contactBox").submit(function () {
-        return false;
-    });
-    $("#contactBoxSendButton").on("click", sendEmail);
-    $(".busySending").hide();
-    $(".doneSending").hide();
 
     window.onpopstate = getPageParamsAndSelectState;
     getPageParamsAndSelectState();
