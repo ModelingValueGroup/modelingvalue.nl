@@ -159,7 +159,6 @@ $(function () {
 
     // pre load some images:
     new Image().src = "../images/colorWim.jpg";
-    new Image().src = "../images/colorRonald.jpg";
     new Image().src = "../images/colorTom.jpg";
     new Image().src = "../images/sfSmall.png";
     new Image().src = "../images/sfBig.png";

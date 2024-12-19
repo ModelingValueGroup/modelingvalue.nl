@@ -286,12 +286,6 @@ div.tom {
 div.tom:hover {
     background-image : url("../images/colorTom.jpg");
 }
-div.ronald {
-    background-image : url("../images/grayRonald.jpg");
-}
-div.ronald:hover {
-    background-image : url("../images/colorRonald.jpg");
-}
 /*=========================== links ===========================*/
 a {
     text-decoration : underline;
